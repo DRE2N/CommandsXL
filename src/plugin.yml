@@ -1,0 +1,9 @@
+name: CommandsXL
+main: io.github.dre2n.commandsxl.CommandsXL
+version: 1.0
+author: Daniel Saukel
+website: http://dre2n.github.io
+commands:
+  commandsxl:
+    description: Custom linked command.
+    aliases: [linked,li,l,cxl]
