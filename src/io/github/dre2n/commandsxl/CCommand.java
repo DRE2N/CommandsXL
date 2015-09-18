@@ -49,10 +49,17 @@ public class CCommand {
 		}
 	}
 
-	public void execute(Player player, CommandSender sender) {
+	public void execute(Player player, CommandSender sender, boolean asOp) {
 		if (player.hasPermission(getPermission(sender))) {
+			boolean isOp = player.isOp();
+			if (asOp) {
+				player.setOp(true);
+			}
 			for (String command : getCommands()) {
 				Bukkit.getServer().dispatchCommand(sender, VariableUtil.commandVariables(command, player));
+			}
+			if (asOp && !isOp) {
+				player.setOp(false);
 			}
 		} else {
 			player.sendMessage(ChatColor.RED + "You do not have permission to use this command.");

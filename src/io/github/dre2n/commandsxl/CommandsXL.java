@@ -21,7 +21,7 @@ public class CommandsXL extends JavaPlugin {
 
 		getCommand("commandsxl").setExecutor(new CommandsXLCMD());
 
-		getLogger().info("CommandsXL " + getDescription().getVersion() + " for CraftBukkit 1.8.8 loaded succesfully!");
+		getLogger().info("CommandsXL " + getDescription().getVersion() + " loaded succesfully!");
 	}
 
 	@Override

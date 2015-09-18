@@ -27,17 +27,15 @@ public class CommandsXLCMD implements CommandExecutor {
 
 						// Console command
 						if (args[0].equalsIgnoreCase("console")) {
-							cCommand.execute(player, Bukkit.getServer().getConsoleSender());
+							cCommand.execute(player, Bukkit.getServer().getConsoleSender(), false);
 
 							// Player command; as OP
 						} else if (args[0].equalsIgnoreCase("op")) {
-							player.setOp(true);
-							cCommand.execute(player, player);
-							player.setOp(false);
+							cCommand.execute(player, player, true);
 
 							// Player command; default
 						} else {
-							cCommand.execute(player, player);
+							cCommand.execute(player, player, false);
 						}
 
 						// Command doesn't exist
