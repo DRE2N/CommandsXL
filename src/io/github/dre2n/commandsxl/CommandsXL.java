@@ -15,6 +15,7 @@ public class CommandsXL extends JavaPlugin {
 	@Override
 	public void onEnable() {
 		plugin = this;
+		getDataFolder().mkdir();
 		File folder = new File(getDataFolder() + "/commands");
 		folder.mkdir();
 		setCCommands(new CCommands(this));
