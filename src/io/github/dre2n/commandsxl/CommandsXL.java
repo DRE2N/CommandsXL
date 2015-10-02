@@ -2,7 +2,7 @@ package io.github.dre2n.commandsxl;
 
 import java.io.File;
 
-import io.github.dre2n.commandsxl.cmd.CommandsXLCMD;
+import io.github.dre2n.commandsxl.listener.CommandListener;
 
 import org.bukkit.plugin.Plugin;
 import org.bukkit.plugin.java.JavaPlugin;
@@ -20,7 +20,7 @@ public class CommandsXL extends JavaPlugin {
 		folder.mkdir();
 		setCCommands(new CCommands(this));
 
-		getCommand("commandsxl").setExecutor(new CommandsXLCMD());
+		getCommand("commandsxl").setExecutor(new CommandListener());
 
 		getLogger().info("CommandsXL " + getDescription().getVersion() + " loaded succesfully!");
 	}
