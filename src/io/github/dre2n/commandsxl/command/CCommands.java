@@ -1,32 +1,32 @@
-package io.github.dre2n.commandsxl;
+package io.github.dre2n.commandsxl.command;
 
+import io.github.dre2n.commandsxl.CommandsXL;
 import io.github.dre2n.commandsxl.util.FileUtil;
 
 import java.io.File;
 import java.util.ArrayList;
-
-import org.bukkit.plugin.Plugin;
+import java.util.List;
 
 public class CCommands {
-
-	private ArrayList<CCommand> cCommands = new ArrayList<CCommand>();
-
-	public CCommands(Plugin plugin) {
-		File folder = plugin.getDataFolder();
-
+	
+	private List<CCommand> cCommands = new ArrayList<CCommand>();
+	
+	public CCommands(CommandsXL plugin) {
+		File folder = new File(plugin.getDataFolder() + "/commands");
+		
 		for (File file : FileUtil.getFilesForFolder(folder)) {
 			CCommand cCommand = new CCommand(file);
 			addCCommand(cCommand);
 		}
 	}
-
+	
 	/**
 	 * @return all cCommands
 	 */
-	public ArrayList<CCommand> getCCommands() {
+	public List<CCommand> getCCommands() {
 		return cCommands;
 	}
-
+	
 	/**
 	 * @return the cCommand
 	 */
@@ -38,7 +38,7 @@ public class CCommands {
 		}
 		return null;
 	}
-
+	
 	/**
 	 * @param cCommands
 	 * the cCommand to add
@@ -46,5 +46,13 @@ public class CCommands {
 	public void addCCommand(CCommand cCommand) {
 		cCommands.add(cCommand);
 	}
-
+	
+	/**
+	 * @param cCommands
+	 * the cCommand to remove
+	 */
+	public void removeCCommand(CCommand cCommand) {
+		cCommands.remove(cCommand);
+	}
+	
 }
