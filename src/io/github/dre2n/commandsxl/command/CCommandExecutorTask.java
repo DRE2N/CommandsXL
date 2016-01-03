@@ -35,7 +35,7 @@ public class CCommandExecutorTask extends BukkitRunnable {
 			player.setOp(true);
 		}
 		
-		for (String command : cCommand.getCommands()) {
+		for (String command : cCommand.getCommandsForWorld(player.getWorld())) {
 			Bukkit.getServer().dispatchCommand(sender, VariableUtil.commandVariables(command, player));
 		}
 		
