@@ -109,8 +109,8 @@ public class CCommand {
 	 * @return the commands to be executed
 	 */
 	public Set<String> getCommandsForWorld(World world) {
-		Map<String, List<World>> commands = this.commands;
-		for (Entry<String, List<World>> commandEntry : commands.entrySet()) {
+		Map<String, List<World>> commands = new HashMap<String, List<World>>(this.commands);
+		for (Entry<String, List<World>> commandEntry : this.commands.entrySet()) {
 			if (commandEntry.getValue().isEmpty() || commandEntry.getValue().contains(world)) {
 				continue;
 				
