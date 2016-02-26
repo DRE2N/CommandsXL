@@ -1,8 +1,9 @@
 name: CommandsXL
 main: io.github.dre2n.commandsxl.CommandsXL
-version: 2.1.1
+version: ${project.version}
 author: Daniel Saukel
-website: http://dre2n.github.io
+description: ${project.description}
+website: ${project.url}
 commands:
   commandsxl:
     description: Custom linked command.
