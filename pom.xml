@@ -8,7 +8,7 @@
     <url>https://dre2n.github.io</url>
     <description>Simple command link plugin.</description>
     <build>
-        <finalName>CommandsXL</finalName>
+        <finalName>commandsxl-${project.version}</finalName>
         <sourceDirectory>src/main/java</sourceDirectory>
         <resources>
             <resource>
@@ -23,7 +23,7 @@
         <plugins>
             <plugin>
                 <artifactId>maven-compiler-plugin</artifactId>
-                <version>2.3.2</version>
+                <version>2.5.1</version>
                 <configuration>
                     <source>1.7</source>
                     <target>1.7</target>
