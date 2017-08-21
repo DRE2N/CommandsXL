@@ -23,6 +23,8 @@ import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 import org.bukkit.scheduler.BukkitRunnable;
 
+import java.util.ArrayList;
+
 /**
  * @author Daniel Saukel
  */
@@ -32,11 +34,21 @@ public class CCommandExecutorTask extends BukkitRunnable {
     private CCommand cCommand;
     private CommandSender sender;
     private boolean asOp;
+    private ArrayList<String> cParams;
 
     public CCommandExecutorTask(Player player, CCommand cCommand, CommandSender sender, boolean asOp) {
         this.player = player;
         this.cCommand = cCommand;
         this.sender = sender;
+        this.cParams = new ArrayList<String>();
+        this.asOp = asOp;
+    }
+
+    public CCommandExecutorTask(Player player, CCommand cCommand, CommandSender sender, boolean asOp, ArrayList<String> cmdParams) {
+        this.player = player;
+        this.cCommand = cCommand;
+        this.sender = sender;
+        this.cParams = cmdParams;
         this.asOp = asOp;
     }
 
@@ -52,9 +64,10 @@ public class CCommandExecutorTask extends BukkitRunnable {
         if (asOp) {
             player.setOp(true);
         }
-
         for (String command : cCommand.getCommandsForWorld(player.getWorld())) {
-            Bukkit.getServer().dispatchCommand(sender, VariableUtil.commandVariables(command, player));
+            command = VariableUtil.commandParameters(command, cParams);
+            command = VariableUtil.commandVariables(command, player);
+            Bukkit.getServer().dispatchCommand(sender, command);
         }
 
         if (asOp && !isOp) {

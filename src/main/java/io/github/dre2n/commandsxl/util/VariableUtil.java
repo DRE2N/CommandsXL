@@ -20,6 +20,8 @@ import org.bukkit.Location;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 
+import java.util.ArrayList;
+
 /**
  * @author Daniel Saukel
  */
@@ -175,4 +177,12 @@ public class VariableUtil {
         return message;
     }
 
+    public static String commandParameters(String message, ArrayList<String> params) {
+        for (int i = 0; i < params.size(); i++) {
+            String toRepl = "\\$" + (i + 1);
+            message = message.replaceAll(toRepl, params.get(i));
+        }
+
+        return message;
+    }
 }

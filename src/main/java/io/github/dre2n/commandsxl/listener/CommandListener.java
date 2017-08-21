@@ -27,6 +27,9 @@ import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 
+import java.util.ArrayList;
+import java.util.Arrays;
+
 /**
  * @author Daniel Saukel
  */
@@ -67,17 +70,22 @@ public class CommandListener implements CommandExecutor {
                 delay = IntegerUtil.parseInt(args[2]) * 20;
             }
 
+            ArrayList<String> cmdParams = new ArrayList<String>();
+            if (args.length > 3) {
+                cmdParams.addAll(Arrays.asList(args).subList(3, args.length));
+            }
+
             // Console command
             if (args[0].equalsIgnoreCase("console")) {
-                new CCommandExecutorTask(player, cCommand, Bukkit.getServer().getConsoleSender(), false).runTaskLater(plugin, (long) delay);
+                new CCommandExecutorTask(player, cCommand, Bukkit.getServer().getConsoleSender(), false, cmdParams).runTaskLater(plugin, (long) delay);
 
                 // Player command; as OP
             } else if (args[0].equalsIgnoreCase("op")) {
-                new CCommandExecutorTask(player, cCommand, player, true).runTaskLater(plugin, (long) delay);
+                new CCommandExecutorTask(player, cCommand, player, true, cmdParams).runTaskLater(plugin, (long) delay);
 
                 // Player command; default
             } else {
-                new CCommandExecutorTask(player, cCommand, player, false).runTaskLater(plugin, (long) delay);
+                new CCommandExecutorTask(player, cCommand, player, false, cmdParams).runTaskLater(plugin, (long) delay);
             }
 
             return true;
@@ -89,7 +97,7 @@ public class CommandListener implements CommandExecutor {
 
             // Console
         } else {
-            sender.sendMessage(ChatColor.RED + "This command may only get performed by a player.");
+            sender.sendMessage(ChatColor.RED + "This command may only be performed by a player.");
             return false;
         }
 
